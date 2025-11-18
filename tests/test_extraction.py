@@ -4,8 +4,7 @@ tests for page parsing
 Page parsing effectiveness is measured through the evaluation system. These
 tests should focus on specific bits of functionality work correctly.
 """
-from unittest import TestCase
-from parameterized import parameterized
+import pytest
 
 from scrapely.htmlpage import HtmlPage
 from scrapely.descriptor import FieldDescriptor as A, ItemDescriptor
@@ -1288,12 +1287,12 @@ TEST_DATA = [
 ]
 
 
-class TestExtraction(TestCase):
-    @parameterized.expand(TEST_DATA)
+class TestExtraction:
+    @pytest.mark.parametrize("name,templates,page,descriptor,expected_output", TEST_DATA)
     def test_extraction(self, name, templates, page, descriptor, expected_output):
         template_pages = [HtmlPage(None, {}, t) for t in templates]
 
         extractor = InstanceBasedLearningExtractor([(t, descriptor) for t in template_pages])
         actual_output, _ = extractor.extract(HtmlPage(None, {}, page))
 
-        self.assertEqual(expected_output, actual_output and actual_output[0])
+        assert expected_output == (actual_output and actual_output[0])

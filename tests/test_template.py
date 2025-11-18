@@ -70,7 +70,7 @@ class TemplateMakerTest(TestCase):
              {u'annotations': {u'content': u'field1'}}])
 
     def test_best_match(self):
-        self.assertEquals(self._matches('text to annotate'),
+        self.assertEqual(self._matches('text to annotate'),
             ['Some text to annotate here', 'Another text to annotate there'])
 
     def _matches(self, text):
