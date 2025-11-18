@@ -1,5 +1,6 @@
 *.pyc
 *.so
+*.c
 .tox
 build
 dist

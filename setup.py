@@ -1,36 +1,30 @@
 #!/usr/bin/env python
-import os
-import platform
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
+from Cython.Build import cythonize
 
 
-USE_CYTHON = "CYTHONIZE" in os.environ
-IS_PYPY = platform.python_implementation() == "PyPy"
-ext = ".pyx" if USE_CYTHON else ".c"
 try:
     import numpy as np
 
     include_dirs = [np.get_include()]
 except ImportError:
     include_dirs = []
-extensions = [
-    Extension(
-        "scrapely._htmlpage", ["scrapely/_htmlpage%s" % ext], include_dirs=include_dirs
-    ),
-    Extension(
-        "scrapely.extraction._similarity",
-        ["scrapely/extraction/_similarity%s" % ext],
-        include_dirs=include_dirs,
-    ),
-]
-if USE_CYTHON and not IS_PYPY:
-    from Cython.Build import cythonize
 
-    extensions = cythonize(extensions)
-if IS_PYPY:
-    extensions = []
-
+extensions = cythonize(
+    [
+        Extension(
+            "scrapely._htmlpage",
+            ["scrapely/_htmlpage.pyx"],
+            include_dirs=include_dirs,
+        ),
+        Extension(
+            "scrapely.extraction._similarity",
+            ["scrapely/extraction/_similarity.pyx"],
+            include_dirs=include_dirs,
+        ),
+    ]
+)
 
 setup(
     name="scrapely",
@@ -57,7 +51,6 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Text Processing :: Markup :: HTML",
     ],
-    install_requires=["numpy", "w3lib"],
-    extras_require={"speedup": ["cython"]},
+    install_requires=["numpy", "w3lib", "cython"],
     ext_modules=extensions,
 )
