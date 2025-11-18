@@ -1,3 +1,2 @@
 numpy
 w3lib
-six
