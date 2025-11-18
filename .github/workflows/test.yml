@@ -30,13 +30,9 @@ jobs:
         pip install cython numpy w3lib six
         pip install nose parameterized doctest-ignore-unicode coverage
 
-    - name: Build extensions
+    - name: Build and install package
       run: |
-        CYTHONIZE=1 python setup.py build_ext --inplace
-
-    - name: Install package
-      run: |
-        pip install -e .
+        CYTHONIZE=1 pip install -e . --no-build-isolation
 
     - name: Run tests
       run: |
