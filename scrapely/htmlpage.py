@@ -6,9 +6,8 @@ system. This encapsulates page related information and prevents parsing
 multiple times.
 """
 import hashlib
-import six
 
-from six.moves.urllib.request import urlopen
+from urllib.request import urlopen
 from copy import deepcopy
 from w3lib.encoding import html_to_unicode
 try:
@@ -241,7 +240,7 @@ class HtmlPage(object):
     entities or encoding urls.
     """
     def __init__(self, url=None, headers=None, body=None, page_id=None, encoding='utf-8'):
-        assert isinstance(body, six.text_type), "unicode expected, got: %s" % type(body).__name__
+        assert isinstance(body, str), "unicode expected, got: %s" % type(body).__name__
         self.headers = headers or {}
         self.body = body
         self.url = url or u''
@@ -278,11 +277,11 @@ class TextPage(HtmlPage):
     body = property(lambda x: x._body, _set_body, doc="raw text for the page")
 
 
-class HtmlPageRegion(six.text_type):
+class HtmlPageRegion(str):
     """A Region of an HtmlPage that has been extracted
     """
     def __new__(cls, htmlpage, data):
-        return six.text_type.__new__(cls, data)
+        return str.__new__(cls, data)
 
     def __init__(self, htmlpage, data):
         """Construct a new HtmlPageRegion object.

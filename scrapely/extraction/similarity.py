@@ -2,7 +2,6 @@
 Similarity calculation for Instance based extraction algorithm.
 """
 from itertools import count
-from six.moves import zip as izip, xrange
 from operator import itemgetter
 from heapq import nlargest
 
@@ -14,7 +13,7 @@ except ImportError:
     def naive_match_length(to_search, subsequence, range_start, range_end):
         startval = subsequence[0]
         return ((i, common_prefix_length(to_search[i:], subsequence))
-                for i in xrange(range_start, range_end)
+                for i in range(range_start, range_end)
                 if startval == to_search[i])
 
 
@@ -30,7 +29,7 @@ def common_prefix_length(a, b):
     0
     """
     i = -1
-    for i, x, y in izip(count(), a, b):
+    for i, x, y in zip(count(), a, b):
         if x != y:
             return i
     return i + 1
@@ -44,7 +43,7 @@ def common_prefix(*sequences):
     ['a', 'b']
     """
     prefix = []
-    for sample in izip(*sequences):
+    for sample in zip(*sequences):
         first = sample[0]
         if all(x == first for x in sample[1:]):
             prefix.append(first)
@@ -114,7 +113,7 @@ def first_longest_subsequence(to_search, subsequence, range_start=0, range_end=N
     # the comparison to startval ensures only matches of length >= 1 and
     # reduces the number of calls to the common_length function
     matches = [(i, common_prefix_length(to_search[i:], subsequence))
-        for i in xrange(range_start, range_end) if startval == to_search[i]]
+        for i in range(range_start, range_end) if startval == to_search[i]]
 
     if not matches:
         return None, None

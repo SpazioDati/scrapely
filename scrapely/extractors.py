@@ -4,8 +4,7 @@ Extractors collection
 
 import re
 
-from six.moves.urllib.parse import urlparse, urlunparse
-from six import unichr
+from urllib.parse import urlparse, urlunparse
 
 from w3lib.html import replace_entities, remove_comments
 from w3lib.url import safe_url_string
@@ -273,7 +272,7 @@ def extract_number(txt):
     >>> extract_number(u'&#163;129&#46;99')
     u'129.99'
     """
-    txt = _NUMERIC_ENTITIES.sub(lambda m: unichr(int(m.groups()[0])), txt)
+    txt = _NUMERIC_ENTITIES.sub(lambda m: chr(int(m.groups()[0])), txt)
     numbers = _NUMBER_RE.findall(txt)
     if len(numbers) == 1:
         return numbers[0]
@@ -319,7 +318,7 @@ def extract_price(txt):
     >>> extract_price('stained, linseed oil finish, clear glas doors')
     >>> extract_price('')
     """
-    txt = _NUMERIC_ENTITIES.sub(lambda m: unichr(int(m.groups()[0])), txt)
+    txt = _NUMERIC_ENTITIES.sub(lambda m: chr(int(m.groups()[0])), txt)
     txt = txt.replace(' ', '')
     m = _DECIMAL_RE.search(txt)
     POINT, COMMA = 0, 1

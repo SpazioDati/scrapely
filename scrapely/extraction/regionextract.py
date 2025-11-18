@@ -7,13 +7,11 @@ import re
 import operator
 import copy
 import pprint
-import six
 
 from itertools import groupby, starmap
+from io import StringIO
 
 from numpy import array
-
-from six.moves import zip as izip, xrange, StringIO
 
 from scrapely.descriptor import FieldDescriptor
 from scrapely.htmlpage import HtmlPageRegion
@@ -121,7 +119,7 @@ class BasicTypeExtractor(object):
             ends = [i.start_index for i in ignored_regions]
             if starts[-1] is not None:
                 ends.append(end_index)
-            included_regions = izip(starts, ends)
+            included_regions = zip(starts, ends)
             if ends[0] is None:
                 included_regions.next()
             regions = starmap(extraction_page.htmlpage_region_inside, included_regions)
@@ -220,7 +218,7 @@ class RepeatedDataExtractor(object):
         while index <= max_start_index:
             prefix_end = index + prefixlen
             if (page.page_tokens[index:prefix_end] == self.prefix).all():
-                for peek in xrange(prefix_end, max_index + 1):
+                for peek in range(prefix_end, max_index + 1):
                     if (page.page_tokens[peek:peek + suffixlen] \
                             == self.suffix).all():
                         extracted += self.extractor.extract(page,
@@ -352,7 +350,7 @@ class RecordExtractor(object):
         # collect variant data, maintaining the order of variants
         variant_ids = []; variants = {}; items = []
         for k, v in attributes:
-            if isinstance(k, six.integer_types):
+            if isinstance(k, int):
                 if k in variants:
                     variants[k] += v
                 else:
