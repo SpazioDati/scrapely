@@ -27,13 +27,13 @@ extensions = cythonize(
 )
 
 setup(
-    name="scrapely",
+    name="sd-scrapely",
     version="0.13.5",
     license="BSD",
     description="A pure-python HTML screen-scraping library",
     author="Scrapy project",
     author_email="info@scrapy.org",
-    url="https://github.com/scrapy/scrapely",
+    url="https://github.com/SpazioDati/scrapely",
     packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
     zip_safe=False,

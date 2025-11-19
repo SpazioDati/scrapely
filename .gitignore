@@ -4,7 +4,7 @@
 .tox
 build
 dist
-scrapely.egg-info
+*.egg-info
 
 # coverage reports
 .coverage
