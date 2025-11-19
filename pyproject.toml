@@ -1,6 +1,9 @@
 [build-system]
-requires = ["setuptools >= 61.0.0", "setuptools-scm[toml] >= 6.2", "wheel", "Cython", "numpy"]
+requires = ["setuptools >= 61.0.0", "setuptools-scm[toml] >= 6.2", "wheel", "Cython", "numpy", "packaging >= 24.2"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["scrapely", "scrapely.extraction"]
 
 [project]
 name = "sd-scrapely"
