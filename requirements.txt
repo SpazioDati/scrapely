@@ -1,2 +1,2 @@
 numpy
-w3lib
+w3lib<2.0
