@@ -50,13 +50,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BUILD: cp310-* cp311-* cp312-* cp313-* cp314-*
           CIBW_SKIP: "*-musllinux_*"
-          CIBW_BEFORE_BUILD: pip install numpy cython
+          CIBW_BEFORE_BUILD: pip install setuptools-scm numpy cython
           CIBW_BUILD_VERBOSITY: 1
 
       - uses: actions/upload-artifact@v4
