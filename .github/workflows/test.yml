@@ -26,15 +26,14 @@ jobs:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
 
-    - name: Install dependencies
+    - name: Install test dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel cython numpy "w3lib<2.0"
         pip install pytest pytest-cov
 
     - name: Build and install package
       run: |
-        CYTHONIZE=1 pip install -e . --no-build-isolation
+        pip install -e .
 
     - name: Run tests
       run: |
@@ -78,10 +77,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Install build tool
         run: |
-          python -m pip install --upgrade pip
-          pip install build setuptools wheel cython numpy
+          python -m pip install --upgrade pip build
 
       - name: Build sdist
         run: python -m build --sdist
