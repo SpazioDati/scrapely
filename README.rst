@@ -2,8 +2,17 @@
 Scrapely
 ========
 
-.. image:: https://api.travis-ci.org/scrapy/scrapely.svg?branch=master
-    :target: https://travis-ci.org/scrapy/scrapely
+.. image:: https://github.com/SpazioDati/scrapely/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/SpazioDati/scrapely/actions/workflows/test.yml
+    :alt: Tests
+
+.. image:: https://img.shields.io/pypi/v/sd-scrapely.svg
+    :target: https://pypi.org/project/sd-scrapely/
+    :alt: PyPI Version
+
+.. image:: https://img.shields.io/pypi/pyversions/sd-scrapely.svg
+    :target: https://pypi.org/project/sd-scrapely/
+    :alt: Python Versions
 
 Scrapely is a library for extracting structured data from HTML pages. Given
 some example web pages and the data to be extracted, scrapely constructs a
@@ -25,7 +34,7 @@ It requires numpy and w3lib Python packages.
 
 To install scrapely on any platform use::
 
-    pip install scrapely
+    pip install sd-scrapely
 
 Usage (API)
 ===========
