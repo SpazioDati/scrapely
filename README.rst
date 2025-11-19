@@ -20,20 +20,12 @@ Scrapinghub wrote a nice `blog post`_ explaining how scrapely works and how it's
 Installation
 ============
 
-Scrapely works in Python 2.7 or 3.3+.
+Scrapely works in Python 3.10+.
 It requires numpy and w3lib Python packages.
 
 To install scrapely on any platform use::
 
     pip install scrapely
-
-If you're using Ubuntu (9.10 or above), you can install scrapely from the
-Scrapy Ubuntu repos. Just add the Ubuntu repos as described here:
-http://doc.scrapy.org/en/latest/topics/ubuntu.html
-
-And then install scrapely with::
-
-    aptitude install python-scrapely
 
 Usage (API)
 ===========

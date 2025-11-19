@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools >= 40.8.0", "wheel", "Cython", "numpy"]
+requires = ["setuptools >= 61.0.0", "setuptools-scm[toml] >= 6.2", "wheel", "Cython", "numpy"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sd-scrapely"
-version = "0.13.5"
+dynamic = ["version"]
 description = "A pure-python HTML screen-scraping library"
 readme = "README.rst"
 license = "BSD-3-Clause"
@@ -34,3 +34,8 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/SpazioDati/scrapely"
 Repository = "https://github.com/SpazioDati/scrapely"
+
+[tool.setuptools_scm]
+write_to = "scrapely/_version.py"
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"

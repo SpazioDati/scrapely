@@ -28,7 +28,6 @@ extensions = cythonize(
 
 setup(
     name="sd-scrapely",
-    version="0.13.5",
     license="BSD",
     description="A pure-python HTML screen-scraping library",
     author="Scrapy project",

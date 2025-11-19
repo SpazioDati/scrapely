@@ -5,6 +5,7 @@
 build
 dist
 *.egg-info
+scrapely/_version.py
 
 # coverage reports
 .coverage
